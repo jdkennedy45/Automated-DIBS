@@ -5,6 +5,7 @@ import datetime
 import configparser
 import time
 import sys
+from pathlib import Path
 
 def reserveRoom(fname, lname, email, phone, length, staff, date, room, lang):
     # set URL that we will direct our request to
@@ -48,8 +49,14 @@ def main():
     # the data is required to reserve a room in Volpe Library
     config = configparser.ConfigParser()
     # you must specify full file path for crontab usage
-    config.read("/usr/DiscordBot/tokens/users.ini")
+    # use forward slash "/" for path directories
+    user_tokens_path = Path("tokens/users.ini")
+    if user_tokens_path.is_file():
+        config.read(user_tokens_path)
+    else:
+        print("\n","User tokens not found at: ",user_tokens_path,"... Please correct file path in Dibs.py file.")
 
+        
     # parse through each section in the config file, take the data and submit an API request with reserveRoom()
     for section in config.sections():
         fname = config.get(section, 'firstName')
