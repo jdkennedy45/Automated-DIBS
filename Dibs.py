@@ -4,6 +4,7 @@ import urllib.request
 import datetime
 import configparser
 import time
+import sys
 
 def reserveRoom(fname, lname, email, phone, length, staff, date, room, lang):
     # set URL that we will direct our request to
@@ -31,7 +32,12 @@ def reserveRoom(fname, lname, email, phone, length, staff, date, room, lang):
     # send data to API as POST request, then print results to console
     r = requests.post(url = URL, data = DATA)
     text = r.json()
+
     print("\n",text)
+    
+    # to optimize program, stop once we received a success response
+    if str(text['IsSuccess']) == 'True':
+        sys.exit()
 
 def main():
     # take current date, add 4 days to it, and convert it to a suitable string format for DIBS API
