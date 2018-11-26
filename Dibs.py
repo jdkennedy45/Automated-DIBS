@@ -55,6 +55,7 @@ def main():
         config.read(user_tokens_path)
     else:
         print("\n","User tokens not found at: ",user_tokens_path,"... Please correct file path in Dibs.py file.")
+        sys.exit()
 
         
     # parse through each section in the config file, take the data and submit an API request with reserveRoom()
