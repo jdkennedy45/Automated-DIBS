@@ -47,7 +47,7 @@ def main():
     # set up parser to config through our .ini file with data of several users
     # the data is required to reserve a room in Volpe Library
     config = configparser.ConfigParser()
-    # you must specify full file path for crontab, the path used below is not adequate usually
+    # you must specify full file path for crontab usage
     config.read("/usr/DiscordBot/tokens/users.ini")
 
     # parse through each section in the config file, take the data and submit an API request with reserveRoom()
