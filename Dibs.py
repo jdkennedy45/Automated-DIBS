@@ -48,9 +48,9 @@ def main():
     # set up parser to config through our .ini file with data of several users
     # the data is required to reserve a room in Volpe Library
     config = configparser.ConfigParser()
-    # you must specify full file path for crontab usage
-    # use forward slash "/" for path directories
-    user_tokens_path = Path("tokens/users.ini")
+    
+    # make sure to change this path to the full file path if you plan to use crontab, or else it will not work
+    user_tokens_path = Path("tokens/users.ini") # use forward slash "/" for path directories
     if user_tokens_path.is_file():
         config.read(user_tokens_path)
     else:
